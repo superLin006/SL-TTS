@@ -39,7 +39,7 @@
 - 100 词缺失：**6**（与 float/dynamic 相同的 6 个生僻词，无新增常用词错误）
 - 49 字 latent 时长 5.17s（float 5.19s），不再出现全量静态量化的缩短
 - 长句 ASR（55 句）：CER 2.33%，float encoder 2.23%，dynamic-QUInt8 2.23%
-- K30：首音 387ms、encoder 237ms、RTF 0.86、Total PSS 197MB、VmHWM 286MB
+- K30（3 次）：首音 349–387ms、encoder 217–237ms、RTF 0.86、Total PSS 197–199MB、VmHWM 281–286MB
 - 体积：encoder 16.0MB + decoder 6.7MB ≈ 22.7MB
 
 结论：全量静态量化的问题主要来自非 Conv 激活，而不是 Conv 权重/激活本身；Conv-only 在保持 23MB 体积和低首音的同时，把质量拉回 float/dynamic 水平。
@@ -53,7 +53,7 @@
 | 原版 xiao_ya streaming | 21MB | 549ms | 0.90 | 283MB | 119MB | 198MB | 基准 |
 | our float encoder + float decoder | 63MB | 634ms | 0.88 | 317MB | 159MB | 239MB | 8 |
 | our static-int8（全量激活）encoder + float decoder | 23MB | 323ms | 0.83 | 294MB | 133MB | 212MB | 13 |
-| our static Conv-only encoder + float decoder | 22.7MB | 387ms | 0.86 | 286MB | 128MB | 197MB | 6 |
+| our static Conv-only encoder + float decoder | 22.7MB | 349–387ms | 0.86 | 281–286MB | 128–130MB | 197–199MB | 6 |
 | our dynamic-int8 (QInt8) encoder + float decoder | 22MB | 1590ms | 0.98 | 284MB | 124MB | 204MB | 7 |
 | our dynamic-QUInt8 encoder + float decoder | 22MB | 631ms | 0.83 | 261MB | 123MB | 190MB | 6 |
 

@@ -11,7 +11,7 @@
 - 当前最佳端侧形态：**streaming static Conv-only encoder + float decoder**（22.7MB）
   - encoder 只对 Conv 做静态 QDQ（QUInt8 激活 / QInt8 权重），attention/LayerNorm 等非 Conv 激活保持 float
   - 100 词 ASR 缺失 6（全为生僻词），长句 CER 2.33%（float 2.23%）
-  - K30：首音 387ms、RTF 0.86、Total PSS 197MB
+  - K30：首音 349–387ms、RTF 0.86、Total PSS 197–199MB
 - QAT（10 epoch）已验证：未超过 Conv-only PTQ，详见 `docs/EVALUATION.md`；不纳入发布
 
 ## 客观结果
@@ -31,7 +31,7 @@ K30 端侧 streaming 实测（4 threads）：
 
 | 版本 | 资源 | 首音 | 26 字/49 字总耗时 | 备注 |
 |---|---:|---:|---:|---|
-| **static Conv-only encoder + float decoder** | **~22.7MB** | **387ms** | **9.1s** | **PSS 197MB / HWM 286MB，推荐** |
+| **static Conv-only encoder + float decoder** | **~22.7MB** | **349–387ms** | **9.0–9.1s** | **PSS 197–199MB / HWM 281–286MB，推荐** |
 | dynamic-QUInt8 encoder + float decoder | ~22MB | 631ms | 8.6s | PSS 190MB |
 | float encoder + float decoder | ~63MB | 373ms / 565ms | 3.9s / 9.3s | 质量对照 |
 | static-int8 encoder + float decoder | ~23MB | 246ms / 314ms | 3.7s / 8.3s | 首音最快，但 100 词多错 5 个 |
