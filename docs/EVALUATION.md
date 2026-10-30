@@ -18,21 +18,34 @@
 - 长短句时长 MAE：长 0.094 / 短 0.232（v2 espeak 0.141/0.250）
 - 长句 >600 音素时长比：0.928（espeak 0.864）
 
-## K30 性能
+## static-int8 encoder 的缺失词
 
-设备：Redmi K30，Android 10，QA debug，4 threads。
+`encoder static QDQ int8 + decoder float` 共 13 个缺失：
 
-| 版本 | 首音 | 26字/49字总耗时 | 备注 |
-|---|---:|---:|---|
-| streaming float encoder+decoder | 373/565ms | 3.9/9.3s | 无 underrun |
-| streaming static-int8 encoder+float decoder | 246/314ms | 3.7/8.3s | 质量下降 |
-| streaming dynamic-int8 encoder+float decoder | 845ms | 4.4/9.3s | 质量好、算力大 |
-| full float | ~0.94s | 0.9/1.7s | 吞吐最好 |
-| full static int8 | ~0.5s | ~1.0s | 长句不稳 |
-| full dynamic int8 | ~4.4s | 4.4/8.0s | 太慢 |
+- float 也缺的 6 个：参差、龃龉、踟蹰、迤逦、恣睢、忸怩
+- static 额外引入的 7 个：记得、调换、种子、蹒跚、氤氲、缱绻、魑魅
+
+扩大校准的实验：
+
+- 355 句（pron100 + long55 + pilot200）：13 个缺失
+- 加入 1,845 条训练句（共 2,200 条，覆盖长短句）：**18 个缺失，更差**
+- 排除 `/dp`（duration predictor）后再量化：56 个缺失，明显破坏
+- 结论：问题不是校准覆盖不足，而是 encoder 的 attention/dp 对 int8 精度敏感；单纯增加校准数据不能修复
+
+## K30 性能/内存
+
+设备：Redmi K30，Android 10，QA debug，4 threads，同一 49 字句。
+
+| 版本 | 磁盘 | 首音 | RTF | VmHWM | Native Heap PSS | Total PSS | 100 词缺失 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 原版 xiao_ya streaming | 21MB | 549ms | 0.90 | 283MB | 119MB | 198MB | 基准 |
+| our float encoder + float decoder | 63MB | 634ms | 0.88 | 317MB | 159MB | 239MB | 8 |
+| our static-int8 encoder + float decoder | 23MB | 323ms | 0.83 | 294MB | 133MB | 212MB | 13 |
+| our dynamic-int8 encoder + float decoder | 22MB | 1590ms | 0.98 | 284MB | 124MB | 204MB | 7 |
 
 ## 建议
 
-- 首版：streaming float encoder + float decoder（质量/首音平衡）
-- 需要更高吞吐时：full float32
-- 需要更小体积时：先解决 encoder 静态量化误差，再考虑 static int8
+- 首版：**streaming float encoder + float decoder**（质量/首音平衡）
+- 内存硬约束且可接受 ~1.5s 首音：dynamic-int8 encoder + float decoder
+- static-int8 encoder 虽然 23MB/0.32s，但额外 7 个常用词错误，不建议上线
+- 需要更高吞吐时：full float32（61MB，RTF 0.18）
