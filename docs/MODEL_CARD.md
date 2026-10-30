@@ -1,4 +1,4 @@
-# Model card — pinyin224
+# Model card — SL-TTS-zh-v1
 
 ## 基本
 
@@ -8,7 +8,7 @@
 - 音素：App g2pW/pinyin token 集（73 个 token，含声调 1–5、词边界与标点）
 - 教师：Kokoro v1.1-zh `zf_001`（Apache-2.0 模型权重，需自行下载）
 - 训练数据：11,725 句 / 约 20h，Kokoro 合成语音
-- 训练：从零训练，pinyin 标签，batch 16，LR 5e-5；本次验收 checkpoint 为 epoch 224/300
+- 训练：从零训练，pinyin 标签，batch 16，LR 5e-5；全量重训完成 300 epoch，发布候选 ckpt224/ckpt299
 
 ## 数据构成
 
@@ -21,7 +21,8 @@
 100 词多音字/生僻词（ASR 词面命中）：
 
 - full float pinyin224：缺 7（参差 + 龃龉/觊觎/踟蹰/迤逦/恣睢/忸怩）
-- streaming static Conv-only encoder + float decoder：缺 6（仅生僻词）
+- streaming static Conv-only encoder + float decoder（ckpt224）：缺 6（仅生僻词）
+- streaming static Conv-only encoder + float decoder（ckpt299）：缺 7（多缱绻；长句/OOD 更好）
 - streaming dynamic-QUInt8 encoder + float decoder：缺 6（仅生僻词）
 - 长句 ASR（55 句）CER：static Conv-only 2.33%，float/dynamic 2.23%
 - 长短句时长 MAE：长句 0.094、短句 0.232（v2 espeak 为 0.141/0.250）

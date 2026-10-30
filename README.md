@@ -1,14 +1,14 @@
 # SL-TTS
 
-轻量中文 TTS 训练与端侧流式部署工程：Kokoro 教师 + Piper/VITS 学生 + App pinyin 前端。
+轻量中文 TTS 训练与端侧流式部署工程：Kokoro 教师 + Piper/VITS 学生 + App pinyin 前端。模型对外名 **SL-TTS-zh-v1**。
 
 ## 状态
 
 - 语料：9,726 句自然对话（14.3h）+ 2,000 句长句 SFT；合计 11,725 句 / 约 20h 教师语音
 - 教师：Kokoro v1.1-zh `zf_001`，使用 App lexicon 修正多音字后重新合成
 - 学生：Piper/VITS medium，pinyin token 标签（对齐 App g2pW/pinyin 前端），从零训练
-- 当前验收 checkpoint：`epoch=224`（全量 pinyin 重训的验收快照）
-- 当前最佳端侧形态：**streaming static Conv-only encoder + float decoder**（22.7MB）
+- 全量 pinyin 重训已完成：300 epoch（`Trainer.fit stopped: max_epochs=300 reached`），最终 checkpoint `epoch=299`；`epoch=224` 是中途验收快照。当前做 224/299 的试听与 held-out 对比，定最终发布 checkpoint。
+- 当前最佳端侧形态：**SL-TTS-zh-v1 · streaming static Conv-only encoder + float decoder**（22.7MB）
   - encoder 只对 Conv 做静态 QDQ（QUInt8 激活 / QInt8 权重），attention/LayerNorm 等非 Conv 激活保持 float
   - 100 词 ASR 缺失 6（全为生僻词），长句 CER 2.33%（float 2.23%）
   - K30：首音 349–387ms、RTF 0.86、Total PSS 197–199MB
@@ -21,9 +21,10 @@
 
 | 模型 | 缺失词数 | 备注 |
 |---|---:|---|
+| SL-TTS-zh-v1 · ckpt224 static Conv-only | 6 | 仅生僻词 |
+| SL-TTS-zh-v1 · ckpt299 static Conv-only | 7 | 多 1 个缱绻；长句/OOD 更好 |
 | full pinyin224 float | 7 | 参差 + 6 个生僻词 |
 | streaming float encoder + float decoder | 8 | 基本相同，另 1 个 ASR 误判 |
-| **streaming static Conv-only encoder + float decoder** | **6** | **仅生僻词，当前推荐** |
 | streaming dynamic-QUInt8 encoder + float decoder | 6 | 仅生僻词，首音较慢 |
 | streaming static-int8（全量激活）encoder + float decoder | 13 | 多错 5 个常用词 |
 | streaming dynamic-int8 encoder + float decoder | 7 | 质量好但首音慢 |
@@ -32,7 +33,8 @@ K30 端侧 streaming 实测（4 threads）：
 
 | 版本 | 资源 | 首音 | 26 字/49 字总耗时 | 备注 |
 |---|---:|---:|---:|---|
-| **static Conv-only encoder + float decoder** | **~22.7MB** | **349–387ms** | **9.0–9.1s** | **PSS 197–199MB / HWM 281–286MB，推荐** |
+| **static Conv-only · ckpt224** | **~22.7MB** | **349–387ms** | **9.0–9.1s** | **PSS 197–199MB / HWM 281–286MB** |
+| **static Conv-only · ckpt299** | **~22.7MB** | **371–375ms**（含 558ms 抖动） | **8.3s** | **PSS 203–204MB / HWM 270–282MB** |
 | dynamic-QUInt8 encoder + float decoder | ~22MB | 631ms | 8.6s | PSS 190MB |
 | float encoder + float decoder | ~63MB | 373ms / 565ms | 3.9s / 9.3s | 质量对照 |
 | static-int8 encoder + float decoder | ~23MB | 246ms / 314ms | 3.7s / 8.3s | 首音最快，但 100 词多错 5 个 |

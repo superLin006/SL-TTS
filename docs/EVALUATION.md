@@ -44,6 +44,22 @@
 
 结论：全量静态量化的问题主要来自非 Conv 激活，而不是 Conv 权重/激活本身；Conv-only 在保持 23MB 体积和低首音的同时，把质量拉回 float/dynamic 水平。
 
+## checkpoint 224 vs 299（static Conv-only）
+
+全量 pinyin 重训完成 300 epoch，最终 checkpoint 为 299；224 是中途验收快照。两者用同一套 Conv-only 量化与前端：
+
+| 测试集 | ckpt224 | ckpt299 |
+|---|---:|---:|
+| 100 词发音扫描 | 6 个缺失 | 7 个缺失（多缱绻） |
+| 200 句 held-out CER | 1.66% / 172 句全对 | 1.74% / 171 句全对 |
+| 55 句长句 CER | 2.33% | **2.15%** |
+| 18 条超长 OOD CER | 2.76% | **2.48%** |
+| K30 首音（独立 3 次） | 349–387ms | 371–375ms（1 次 558ms） |
+| K30 并发 ASR suite 首音 | 385–582ms | 372–524ms |
+| K30 Total PSS | 197–199MB | 203–204MB |
+
+299 在长句/超长输入上更稳，短句 held-out 差 0.08 个百分点（约 2 个字符/2760），并发 suite 无 underrun 且首音不慢。最终以用户试听为准：`release/SL-TTS-zh-v1-audition/`。
+
 ## 扩展验证：static Conv-only vs dynamic QUInt8
 
 为避免只看 100 词小集误判，补了三组测试（同一套 pinyin token/decoder，仅换 encoder）：
