@@ -44,6 +44,20 @@
 
 结论：全量静态量化的问题主要来自非 Conv 激活，而不是 Conv 权重/激活本身；Conv-only 在保持 23MB 体积和低首音的同时，把质量拉回 float/dynamic 水平。
 
+## 扩展验证：static Conv-only vs dynamic QUInt8
+
+为避免只看 100 词小集误判，补了三组测试（同一套 pinyin token/decoder，仅换 encoder）：
+
+| 测试集 | static Conv-only | dynamic QUInt8 | float |
+|---|---:|---:|---:|
+| 200 句 held-out（短句，类别覆盖） | 1.66% CER / 172 句全对 | 1.64% / 171 | 1.51% / 170 |
+| 55 句长句 held-out | 2.33% | 2.23% | 2.23% |
+| 18 条拼接超长 OOD（最长 839 token） | 2.76% | 2.94% | 2.49% |
+
+- OOD 最大 839 token 时 static 未出现崩溃/截断/时长漂移（时长比均值 1.002，范围 0.983–1.054）。
+- K30 stream suite（3 轮重复 + 取消恢复，同时跑 ASR 负载）：static 首音 385–582ms，dynamic 535–794ms；两者 `underrun=0`，取消后均能完整恢复；并发 ASR 时 Total PSS 分别约 689/700MB（ASR 占大头），HWM 944/889MB。
+- 结论：static Conv-only 在更大 held-out、超长 OOD 和并发 ASR 下都没有质量/稳定性缺口，且首音更快；dynamic 保留为低内存/异常回退，不作为默认。
+
 ## K30 性能/内存
 
 设备：Redmi K30，Android 10，QA debug，4 threads，同一 49 字句。

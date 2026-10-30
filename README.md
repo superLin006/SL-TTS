@@ -12,6 +12,7 @@
   - encoder 只对 Conv 做静态 QDQ（QUInt8 激活 / QInt8 权重），attention/LayerNorm 等非 Conv 激活保持 float
   - 100 词 ASR 缺失 6（全为生僻词），长句 CER 2.33%（float 2.23%）
   - K30：首音 349–387ms、RTF 0.86、Total PSS 197–199MB
+  - 200 句 held-out CER 1.66%、55 长句 2.33%、18 条超长 OOD 2.76%；并发 ASR suite 无 underrun
 - QAT（10 epoch）已验证：未超过 Conv-only PTQ，详见 `docs/EVALUATION.md`；不纳入发布
 
 ## 客观结果
