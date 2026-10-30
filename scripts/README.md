@@ -32,6 +32,8 @@
 - `soup_ckpt.py`：espeak 版本权重插值（实验保留）
 
 ## 评测
+- `poly_scan.py`：教师 G2P vs App lexicon 多音词扫描（输入 `data/poly_contexts.jsonl`）
+- `asr_cer.py` / `asr_dir_pron.py`：目录级 ASR 转写与 CER/目标词命中统计
 - `pron_table.py`：pinyin 与 espeak 音素对照
 - `gen_pinyin_eval_inputs.py`：pinyin eval 输入
 - `test_onnx_pinyin.py`：ONNX float/int8 推理自检

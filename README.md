@@ -7,12 +7,15 @@
 - 语料：9,726 句自然对话（14.3h）+ 2,000 句长句 SFT；合计 11,725 句 / 约 20h 教师语音
 - 教师：Kokoro v1.1-zh `zf_001`，使用 App lexicon 修正多音字后重新合成
 - 学生：Piper/VITS medium，pinyin token 标签（对齐 App g2pW/pinyin 前端），从零训练
-- 全量 pinyin 重训已完成：300 epoch（`Trainer.fit stopped: max_epochs=300 reached`），最终 checkpoint `epoch=299`；`epoch=224` 是中途验收快照。当前做 224/299 的试听与 held-out 对比，定最终发布 checkpoint。
-- 当前最佳端侧形态：**SL-TTS-zh-v1 · streaming static Conv-only encoder + float decoder**（22.7MB）
+- 全量 pinyin 重训已完成：300 epoch（`Trainer.fit stopped: max_epochs=300 reached`），最终 checkpoint `epoch=299`；`epoch=224` 是中途验收快照。
+- **最终发布候选：`SL-TTS-zh-v1` = ckpt299 + 多音词修正 drill SFT（10 epoch）+ 修正 lexicon**
+  - 修正：还款/还了/还了书/还了钱/行行/头发/关系；又长又黑强制 cháng
+  - 100 词 ASR 缺失 6（生僻词）；200 held-out CER 1.47%；55 长句 2.04%；18 超长 OOD 2.42%
+  - 上一版 ckpt299（未修正）分别是 7 / 1.74% / 2.15% / 2.48%
+- 当前最佳端侧形态：**streaming static Conv-only encoder + float decoder**（22.7MB）
   - encoder 只对 Conv 做静态 QDQ（QUInt8 激活 / QInt8 权重），attention/LayerNorm 等非 Conv 激活保持 float
-  - 100 词 ASR 缺失 6（全为生僻词），长句 CER 2.33%（float 2.23%）
-  - K30：首音 349–387ms、RTF 0.86、Total PSS 197–199MB
-  - 200 句 held-out CER 1.66%、55 长句 2.33%、18 条超长 OOD 2.76%；并发 ASR suite 无 underrun
+  - K30：独立首音 372–419ms、RTF ~0.82、Total PSS ~203–204MB；并发 ASR suite 首音 464–603ms、underrun=0、取消恢复通过
+  - 注意：教师音频不是发音金标准；P09“长”、P12“数”已确认教师读错、学生读对，教师坏样本需替换
 - QAT（10 epoch）已验证：未超过 Conv-only PTQ，详见 `docs/EVALUATION.md`；不纳入发布
 
 ## 客观结果
@@ -21,6 +24,7 @@
 
 | 模型 | 缺失词数 | 备注 |
 |---|---:|---|
+| **SL-TTS-zh-v1 final（ckpt299 + polyfix SFT）** | **6** | **仅生僻词，当前发布候选** |
 | SL-TTS-zh-v1 · ckpt224 static Conv-only | 6 | 仅生僻词 |
 | SL-TTS-zh-v1 · ckpt299 static Conv-only | 7 | 多 1 个缱绻；长句/OOD 更好 |
 | full pinyin224 float | 7 | 参差 + 6 个生僻词 |
@@ -33,8 +37,9 @@ K30 端侧 streaming 实测（4 threads）：
 
 | 版本 | 资源 | 首音 | 26 字/49 字总耗时 | 备注 |
 |---|---:|---:|---:|---|
-| **static Conv-only · ckpt224** | **~22.7MB** | **349–387ms** | **9.0–9.1s** | **PSS 197–199MB / HWM 281–286MB** |
-| **static Conv-only · ckpt299** | **~22.7MB** | **371–375ms**（含 558ms 抖动） | **8.3s** | **PSS 203–204MB / HWM 270–282MB** |
+| **static Conv-only · final SFT** | **~22.7MB** | **372–419ms**（含 1 次 1.2s 抖动） | **8.3s** | **PSS 203–204MB / HWM 277–299MB，发布候选** |
+| static Conv-only · ckpt224 | ~22.7MB | 349–387ms | 9.0–9.1s | PSS 197–199MB / HWM 281–286MB |
+| static Conv-only · ckpt299 | ~22.7MB | 371–375ms（含 558ms 抖动） | 8.3s | PSS 203–204MB / HWM 270–282MB |
 | dynamic-QUInt8 encoder + float decoder | ~22MB | 631ms | 8.6s | PSS 190MB |
 | float encoder + float decoder | ~63MB | 373ms / 565ms | 3.9s / 9.3s | 质量对照 |
 | static-int8 encoder + float decoder | ~23MB | 246ms / 314ms | 3.7s / 8.3s | 首音最快，但 100 词多错 5 个 |

@@ -60,6 +60,21 @@
 
 299 在长句/超长输入上更稳，短句 held-out 差 0.08 个百分点（约 2 个字符/2760），并发 suite 无 underrun 且首音不慢。最终以用户试听为准：`release/SL-TTS-zh-v1-audition/`。
 
+## 多音词修正 + drill SFT（final）
+
+修正 App lexicon / 教师短语：`还款 huan2 kuan3`、`还了/还了书/还了钱`、`行行 hang2 hang2`、`头发 fa5`、`关系 xi5`；`又长又黑` 强制 cháng。筛选训练语料中受影响句子 127 条 + 400 条无关 replay，从 ckpt299 做 10 epoch、lr 1e-5 的 drill SFT：
+
+| 测试 | ckpt299 修正 lexicon | final（+SFT） |
+|---|---:|---:|
+| 100 词发音 | 6 | 6 |
+| 200 held-out CER | 1.52% | **1.47%** |
+| 55 长句 CER | 2.34% | **2.04%** |
+| 18 超长 OOD CER | 2.50% | **2.42%** |
+
+- SFT 没有增加 100 词生僻词缺失，长句/OOD 均改善；发布候选 `release/SL-TTS-zh-v1`。
+- 教师坏样本：P09「又长又黑」教师 G2P 读 zhǎng（学生 cháng 对）；P12「数一下」教师实际发声被用户听成 shù（学生 shǔ 对；G2P 标 shǔ）。教师音频不能当发音金标准，P12 类样本未用于本轮 SFT。
+- 审计包：`release/SL-TTS-zh-v1-polyphone-audit.zip`（教师 / ckpt299 / 修正 lexicon / final SFT 四列）。
+
 ## 扩展验证：static Conv-only vs dynamic QUInt8
 
 为避免只看 100 词小集误判，补了三组测试（同一套 pinyin token/decoder，仅换 encoder）：

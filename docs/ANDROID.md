@@ -34,7 +34,8 @@ python scripts/build_stream_cut_assets.py \
 
 ## 量化结论
 
-- **推荐首版**：模型名 **SL-TTS-zh-v1**；encoder **static Conv-only** + decoder float，约 22.7MB；K30 首音 349–387ms、RTF 0.86、PSS 197–204MB，100 词 6–7 个生僻词缺失。ckpt224/ckpt299 两个候选见 `release/SL-TTS-zh-v1-ckpt224|ckpt299`，试听后定版。
+- **推荐首版**：模型名 **SL-TTS-zh-v1**；encoder **static Conv-only** + decoder float，约 22.7MB；最终包为 `release/SL-TTS-zh-v1`（ckpt299 + 多音词修正 drill SFT），K30 首音 372–419ms、RTF ~0.82、PSS 203–204MB，100 词 6 个生僻词缺失。
+- 最终包内含修正后的 `lexicon.txt`（还款/还了/行行/头发/关系等）。App 生产环境目前从下载的 `piper/zh` 基座读取 lexicon；接入时必须同步替换基座 lexicon，或让 `StreamingPiperVoice` 优先使用包内 lexicon，否则修正不会生效。
   - 只对 Conv 做 static QDQ（激活 QUInt8、权重 QInt8、per-channel MinMax），attention/LayerNorm 等非 Conv 激活保持 float。
   - 全量激活 static-int8 会多错常用词并把输出时长缩短约 3%，不要用。
 - encoder dynamic-**QUInt8** + decoder float：约 22MB，同为 6 个生僻词缺失；首音 0.63s、RTF 0.83、PSS 190MB，是低内存备选。
@@ -43,4 +44,4 @@ python scripts/build_stream_cut_assets.py \
 - full static int8：长句后半段不稳；full dynamic int8：保真但太慢。
 - QAT：10 epoch 未超过 Conv-only PTQ，详见 `docs/EVALUATION.md`。
 
-发布资源 pack 包含 `manifest.json`（name、checkpoint、sample_rate、文件 sha256）与 `MODEL_CARD.md`；当前候选 pack 为 `release/SL-TTS-zh-v1-ckpt224` 与 `release/SL-TTS-zh-v1-ckpt299`。不要把模型权重提交进 Git。
+发布资源 pack 包含 `manifest.json`（name、checkpoint、sample_rate、lexicon sha256）与 `MODEL_CARD.md`；最终 pack 为 `release/SL-TTS-zh-v1`，历史候选 `release/SL-TTS-zh-v1-ckpt224|ckpt299`。不要把模型权重提交进 Git。
