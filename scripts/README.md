@@ -24,9 +24,11 @@
 - `train_pinyin.sh`：参考训练命令（路径需按环境修改）
 
 ## 导出/量化
-- `build_stream_cut_assets.py`：从 full ONNX 切 `/Mul_7_output_0` streaming 资源
-- `quantize_encoder.py`：encoder 静态 QDQ int8
-- `quantize_static.py`：full 模型静态 QDQ int8
+- `build_stream_cut_assets.py`：从 full ONNX 切 `/Mul_7_output_0` streaming 资源，并生成
+  Conv-only 静态 QDQ（`encoder.onnx`，推荐）、全量激活静态（`encoder_static_full.onnx`）和 dynamic QUInt8
+- `qat_train.py`：Conv1d fake-quant QAT（实验，未超过 Conv-only PTQ）
+- `qat_clean.py`：把 Lightning QAT checkpoint 去掉 fake-quant 包装后导出 clean checkpoint
+- `quantize_encoder.py` / `quantize_static.py`：早期单模型量化实验
 - `soup_ckpt.py`：espeak 版本权重插值（实验保留）
 
 ## 评测

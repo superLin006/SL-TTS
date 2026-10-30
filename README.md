@@ -7,8 +7,12 @@
 - 语料：9,726 句自然对话（14.3h）+ 2,000 句长句 SFT；合计 11,725 句 / 约 20h 教师语音
 - 教师：Kokoro v1.1-zh `zf_001`，使用 App lexicon 修正多音字后重新合成
 - 学生：Piper/VITS medium，pinyin token 标签（对齐 App g2pW/pinyin 前端），从零训练
-- 当前验收 checkpoint：`epoch=224`（300 epoch 训练中）
-- 当前最佳端侧形态：**streaming dynamic-QUInt8 encoder + float decoder**（22MB）；float 版本保留为质量对照
+- 当前验收 checkpoint：`epoch=224`（全量 pinyin 重训的验收快照）
+- 当前最佳端侧形态：**streaming static Conv-only encoder + float decoder**（22.7MB）
+  - encoder 只对 Conv 做静态 QDQ（QUInt8 激活 / QInt8 权重），attention/LayerNorm 等非 Conv 激活保持 float
+  - 100 词 ASR 缺失 6（全为生僻词），长句 CER 2.33%（float 2.23%）
+  - K30：首音 387ms、RTF 0.86、Total PSS 197MB
+- QAT（10 epoch）已验证：未超过 Conv-only PTQ，详见 `docs/EVALUATION.md`；不纳入发布
 
 ## 客观结果
 
@@ -18,15 +22,17 @@
 |---|---:|---|
 | full pinyin224 float | 7 | 参差 + 6 个生僻词 |
 | streaming float encoder + float decoder | 8 | 基本相同，另 1 个 ASR 误判 |
-| streaming dynamic-QUInt8 encoder + float decoder | 6 | 仅生僻词，当前推荐 |
-| streaming static-int8 encoder + float decoder | 13 | encoder 静态量化多错 5 个常用词 |
+| **streaming static Conv-only encoder + float decoder** | **6** | **仅生僻词，当前推荐** |
+| streaming dynamic-QUInt8 encoder + float decoder | 6 | 仅生僻词，首音较慢 |
+| streaming static-int8（全量激活）encoder + float decoder | 13 | 多错 5 个常用词 |
 | streaming dynamic-int8 encoder + float decoder | 7 | 质量好但首音慢 |
 
 K30 端侧 streaming 实测（4 threads）：
 
 | 版本 | 资源 | 首音 | 26 字/49 字总耗时 | 备注 |
 |---|---:|---:|---:|---|
-| dynamic-QUInt8 encoder + float decoder | ~22MB | 631ms | 8.6s | PSS 190MB，推荐 |
+| **static Conv-only encoder + float decoder** | **~22.7MB** | **387ms** | **9.1s** | **PSS 197MB / HWM 286MB，推荐** |
+| dynamic-QUInt8 encoder + float decoder | ~22MB | 631ms | 8.6s | PSS 190MB |
 | float encoder + float decoder | ~63MB | 373ms / 565ms | 3.9s / 9.3s | 质量对照 |
 | static-int8 encoder + float decoder | ~23MB | 246ms / 314ms | 3.7s / 8.3s | 首音最快，但 100 词多错 5 个 |
 | dynamic-int8 encoder + float decoder | ~22MB | 845ms | 4.4s / 9.3s | 质量好，动态 ConvInteger 算力大 |
@@ -37,7 +43,7 @@ K30 端侧 streaming 实测（4 threads）：
 
 ## 仓库内容
 
-- `scripts/`：语料生成、pinyin 前端、教师合成、预处理、训练、导出、评测脚本
+- `scripts/`：语料生成、pinyin 前端、教师合成、预处理、训练、导出、量化、QAT、评测脚本
 - `data/`：训练/评测文本 JSONL（不含音频）
 - `configs/`：补充短语与 token 表
 - `tools/android/`：Piper 全模型切分 streaming 资源的参考脚本

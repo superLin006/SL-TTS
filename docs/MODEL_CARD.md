@@ -21,8 +21,12 @@
 100 词多音字/生僻词（ASR 词面命中）：
 
 - full float pinyin224：缺 7（参差 + 龃龉/觊觎/踟蹰/迤逦/恣睢/忸怩）
+- streaming static Conv-only encoder + float decoder：缺 6（仅生僻词）
+- streaming dynamic-QUInt8 encoder + float decoder：缺 6（仅生僻词）
+- 长句 ASR（55 句）CER：static Conv-only 2.33%，float/dynamic 2.23%
 - 长短句时长 MAE：长句 0.094、短句 0.232（v2 espeak 为 0.141/0.250）
 - 长句 >600 音素时长比：0.928（espeak 0.864）
+- QAT（10 epoch）：未超过 Conv-only PTQ，不发布
 
 ## 已知限制
 

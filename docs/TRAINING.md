@@ -63,3 +63,27 @@ python scripts/test_onnx_pinyin.py              # ONNX float/int8 自检
 ```
 
 ASR 回读可使用 Qwen3-ASR 或 SenseVoice；`scripts/asr_pinyin_early.py` 为参考实现。
+
+## 6. 导出与量化
+
+```bash
+cd $PIPER_SRC
+python -m piper_train.export_onnx $SLTTS_ROOT/train/runs/medium_pinyin_fast/snapshots/epoch=224.ckpt \
+  $SLTTS_ROOT/export/pinyin224.onnx
+```
+
+`scripts/build_qat_assets.py` 会从 full ONNX 切出 streaming encoder/decoder，并生成：
+
+- `encoder_static_i8w_conv.onnx`：只量化 Conv 的静态 QDQ（推荐发布）
+- `encoder_static_i8w.onnx` / `encoder_static_u8w.onnx`：全量激活静态 QDQ（质量较差，仅对照）
+- `encoder_dynamic_u8.onnx`：dynamic QUInt8，低内存备选
+
+QAT 复验（不推荐发布，仅保留实验）：
+
+```bash
+python scripts/qat_train.py \
+  --checkpoint .../epoch=224.ckpt --dataset-dir .../piper_dataset \
+  --out-dir .../qat10 --epochs 10 --batch-size 16 --lr 2e-5
+```
+
+`qat_train.py` 结束时保存 `qat_clean.ckpt`；若要从 Lightning 中间 epoch checkpoint 导出，用 `scripts/qat_clean.py` 先去掉 fake-quant 包装。
