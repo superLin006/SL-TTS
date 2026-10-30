@@ -50,7 +50,7 @@
 
 | 测试集 | static Conv-only | dynamic QUInt8 | float |
 |---|---:|---:|---:|
-| 200 句 held-out（短句，类别覆盖） | 1.66% CER / 172 句全对 | 1.64% / 171 | 1.51% / 170 |
+| 200 句 held-out（daily/travel/meeting/numbers/business/names/polyphone/long/mixed） | 1.66% CER / 172 句全对 | 1.64% / 171 | 1.51% / 170 |
 | 55 句长句 held-out | 2.33% | 2.23% | 2.23% |
 | 18 条拼接超长 OOD（最长 839 token） | 2.76% | 2.94% | 2.49% |
 
