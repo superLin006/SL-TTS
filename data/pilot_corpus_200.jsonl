@@ -1,0 +1,200 @@
+{"id": "p001", "cat": "daily", "text": "你好，很高兴认识你。"}
+{"id": "p002", "cat": "daily", "text": "请问最近的地铁站怎么走？"}
+{"id": "p003", "cat": "daily", "text": "这个多少钱？可以刷卡吗？"}
+{"id": "p004", "cat": "daily", "text": "我先确认一下，稍后回复你。"}
+{"id": "p005", "cat": "daily", "text": "没关系，我们慢慢来。"}
+{"id": "p006", "cat": "daily", "text": "你刚才说的最后一句，我没有听清。"}
+{"id": "p007", "cat": "daily", "text": "今天天气不错，我们出去走走吧。"}
+{"id": "p008", "cat": "daily", "text": "这家餐厅几点开门？"}
+{"id": "p009", "cat": "daily", "text": "麻烦帮我倒一杯温水。"}
+{"id": "p010", "cat": "daily", "text": "我的手机快没电了，你有充电宝吗？"}
+{"id": "p011", "cat": "daily", "text": "请问洗手间在哪里？"}
+{"id": "p012", "cat": "daily", "text": "这个座位有人吗？"}
+{"id": "p013", "cat": "daily", "text": "我们约在楼下咖啡店见面。"}
+{"id": "p014", "cat": "daily", "text": "你明天上午有时间吗？"}
+{"id": "p015", "cat": "daily", "text": "我大概十分钟后到。"}
+{"id": "p016", "cat": "daily", "text": "路上有点堵，可能会晚一点。"}
+{"id": "p017", "cat": "daily", "text": "谢谢你的帮忙，改天请你吃饭。"}
+{"id": "p018", "cat": "daily", "text": "这件事我需要再想一想。"}
+{"id": "p019", "cat": "daily", "text": "你先忙，我不打扰了。"}
+{"id": "p020", "cat": "daily", "text": "有什么问题随时联系我。"}
+{"id": "p021", "cat": "daily", "text": "请把窗户关一下，有点冷。"}
+{"id": "p022", "cat": "daily", "text": "我比较喜欢靠窗的位置。"}
+{"id": "p023", "cat": "daily", "text": "这个周末你有安排吗？"}
+{"id": "p024", "cat": "daily", "text": "我们好久没见了。"}
+{"id": "p025", "cat": "daily", "text": "你今天看起来有点累。"}
+{"id": "p026", "cat": "daily", "text": "记得按时吃饭。"}
+{"id": "p027", "cat": "daily", "text": "我先走了，明天见。"}
+{"id": "p028", "cat": "daily", "text": "你能再说一遍吗？刚才有点吵。"}
+{"id": "p029", "cat": "daily", "text": "这个味道不错，你可以试试。"}
+{"id": "p030", "cat": "daily", "text": "我马上回来，请稍等。"}
+{"id": "p031", "cat": "travel", "text": "请问登机口在哪里？"}
+{"id": "p032", "cat": "travel", "text": "我的航班延误了两个小时。"}
+{"id": "p033", "cat": "travel", "text": "行李托运在几号柜台？"}
+{"id": "p034", "cat": "travel", "text": "我想预订一间安静的双人房。"}
+{"id": "p035", "cat": "travel", "text": "酒店可以延迟退房吗？"}
+{"id": "p036", "cat": "travel", "text": "请帮我叫一辆出租车。"}
+{"id": "p037", "cat": "travel", "text": "到火车站大概需要多久？"}
+{"id": "p038", "cat": "travel", "text": "这趟高铁经过南京吗？"}
+{"id": "p039", "cat": "travel", "text": "我买的是往返票，可以改签吗？"}
+{"id": "p040", "cat": "travel", "text": "护照和登机牌请放好。"}
+{"id": "p041", "cat": "travel", "text": "机场大巴最晚一班是几点？"}
+{"id": "p042", "cat": "travel", "text": "请问这里可以开发票吗？"}
+{"id": "p043", "cat": "travel", "text": "我想换一些当地货币。"}
+{"id": "p044", "cat": "travel", "text": "这条街上有推荐的早餐店吗？"}
+{"id": "p045", "cat": "travel", "text": "我们迷路了，能帮我们看一下地图吗？"}
+{"id": "p046", "cat": "travel", "text": "这个景点需要提前预约吗？"}
+{"id": "p047", "cat": "travel", "text": "门票包含讲解服务吗？"}
+{"id": "p048", "cat": "travel", "text": "请问附近有药店吗？"}
+{"id": "p049", "cat": "travel", "text": "我的行李好像拿错了。"}
+{"id": "p050", "cat": "travel", "text": "出租车司机说十分钟后到。"}
+{"id": "p051", "cat": "travel", "text": "我想去市中心，走哪条路比较快？"}
+{"id": "p052", "cat": "travel", "text": "这附近有地铁站吗？"}
+{"id": "p053", "cat": "travel", "text": "请问这班车到不到西湖？"}
+{"id": "p054", "cat": "travel", "text": "我们在这里拍张照吧。"}
+{"id": "p055", "cat": "travel", "text": "明天早上七点叫醒我。"}
+{"id": "p056", "cat": "travel", "text": "餐厅可以打包吗？"}
+{"id": "p057", "cat": "travel", "text": "这个价格含早餐吗？"}
+{"id": "p058", "cat": "travel", "text": "我想把行程改到后天。"}
+{"id": "p059", "cat": "travel", "text": "机场有充电的地方吗？"}
+{"id": "p060", "cat": "travel", "text": "这次旅行整体很顺利。"}
+{"id": "p061", "cat": "meeting", "text": "今天我们先对齐一下发布计划。"}
+{"id": "p062", "cat": "meeting", "text": "这个方案的风险主要在三端联调。"}
+{"id": "p063", "cat": "meeting", "text": "如果本周完不成，就顺延到下周一。"}
+{"id": "p064", "cat": "meeting", "text": "我同意这个方向，但需要补一组真机数据。"}
+{"id": "p065", "cat": "meeting", "text": "请把刚才的结论记到会议纪要里。"}
+{"id": "p066", "cat": "meeting", "text": "我们先听对方的意见，再做决定。"}
+{"id": "p067", "cat": "meeting", "text": "这个需求需要产品和技术一起确认。"}
+{"id": "p068", "cat": "meeting", "text": "目前最大的阻塞是模型下载。"}
+{"id": "p069", "cat": "meeting", "text": "我建议先做一个最小可行版本。"}
+{"id": "p070", "cat": "meeting", "text": "这版先不改架构，只修稳定性。"}
+{"id": "p071", "cat": "meeting", "text": "测试环境已经准备好了。"}
+{"id": "p072", "cat": "meeting", "text": "真机验证安排在明天下午。"}
+{"id": "p073", "cat": "meeting", "text": "我们需要一个明确的负责人。"}
+{"id": "p074", "cat": "meeting", "text": "这个问题今天必须给出结论。"}
+{"id": "p075", "cat": "meeting", "text": "大家还有补充吗？"}
+{"id": "p076", "cat": "meeting", "text": "我把风险点整理成三条。"}
+{"id": "p077", "cat": "meeting", "text": "这条链路的延迟还需要再压。"}
+{"id": "p078", "cat": "meeting", "text": "线上数据和本地数据不一致。"}
+{"id": "p079", "cat": "meeting", "text": "先回滚，再定位原因。"}
+{"id": "p080", "cat": "meeting", "text": "这个改动会影响老版本吗？"}
+{"id": "p081", "cat": "meeting", "text": "请把日志和复现步骤发一下。"}
+{"id": "p082", "cat": "meeting", "text": "我们按优先级排一下版本。"}
+{"id": "p083", "cat": "meeting", "text": "这个功能下周能提测吗？"}
+{"id": "p084", "cat": "meeting", "text": "预算方面需要再确认。"}
+{"id": "p085", "cat": "meeting", "text": "我这边资源没有问题。"}
+{"id": "p086", "cat": "meeting", "text": "会议结束后同步一份纪要给相关同事。"}
+{"id": "p087", "cat": "meeting", "text": "这个指标没有达到预期。"}
+{"id": "p088", "cat": "meeting", "text": "我们先解决用户能感知到的问题。"}
+{"id": "p089", "cat": "meeting", "text": "预计下个迭代可以完成。"}
+{"id": "p090", "cat": "meeting", "text": "感谢大家，今天先到这里。"}
+{"id": "p091", "cat": "business", "text": "合同里需要补充保密条款。"}
+{"id": "p092", "cat": "business", "text": "报价单请在本周五前发给我。"}
+{"id": "p093", "cat": "business", "text": "我们希望能拿到更好的付款条件。"}
+{"id": "p094", "cat": "business", "text": "这笔订单需要走内部审批。"}
+{"id": "p095", "cat": "business", "text": "客户对交付时间比较敏感。"}
+{"id": "p096", "cat": "business", "text": "请安排一次线上演示。"}
+{"id": "p097", "cat": "business", "text": "我们下周一拜访客户。"}
+{"id": "p098", "cat": "business", "text": "这个项目的验收标准需要写清楚。"}
+{"id": "p099", "cat": "business", "text": "请把发票寄到公司地址。"}
+{"id": "p100", "cat": "business", "text": "我们考虑增加一年的维护服务。"}
+{"id": "p101", "cat": "business", "text": "合作方要求提供资质证明。"}
+{"id": "p102", "cat": "business", "text": "这次采购需要三家比价。"}
+{"id": "p103", "cat": "business", "text": "价格可以再谈，但交期不能延。"}
+{"id": "p104", "cat": "business", "text": "请确认合同上的公司名称。"}
+{"id": "p105", "cat": "business", "text": "我们计划先小批量试用。"}
+{"id": "p106", "cat": "business", "text": "付款方式接受电汇吗？"}
+{"id": "p107", "cat": "business", "text": "这份提案需要翻译成英文。"}
+{"id": "p108", "cat": "business", "text": "客户反馈产品的稳定性不错。"}
+{"id": "p109", "cat": "business", "text": "我们下周安排一次复盘。"}
+{"id": "p110", "cat": "business", "text": "这个季度的目标已经超额完成。"}
+{"id": "p111", "cat": "numbers", "text": "2024年12月31号，拨打110或者18920240511，转账123456块钱。"}
+{"id": "p112", "cat": "numbers", "text": "订单金额是 12,345.67 元，折扣 8.5 折。"}
+{"id": "p113", "cat": "numbers", "text": "请把会议改到 2026 年 10 月 26 日下午 3 点半。"}
+{"id": "p114", "cat": "numbers", "text": "A股涨了 2.3%，成交额 1.2 亿元。"}
+{"id": "p115", "cat": "numbers", "text": "这件商品原价 399 元，现价 199 元，便宜了 200 元。"}
+{"id": "p116", "cat": "numbers", "text": "从北京到上海大约 1,300 公里，坐高铁需要四个半小时。"}
+{"id": "p117", "cat": "numbers", "text": "我的电话是 138 0013 8000。"}
+{"id": "p118", "cat": "numbers", "text": "会议室在 18 楼 1806 室。"}
+{"id": "p119", "cat": "numbers", "text": "项目预算是 250 万元，已使用 62%。"}
+{"id": "p120", "cat": "numbers", "text": "这批货一共 3,600 件，明天发出 1,200 件。"}
+{"id": "p121", "cat": "numbers", "text": "航班号是 CA1832，10 点 45 分起飞。"}
+{"id": "p122", "cat": "numbers", "text": "请在本月 30 号之前完成报销。"}
+{"id": "p123", "cat": "numbers", "text": "我的身份证后四位是 3721。"}
+{"id": "p124", "cat": "numbers", "text": "温度是零下 5 度，注意保暖。"}
+{"id": "p125", "cat": "numbers", "text": "这道题的正确率只有 47.6%。"}
+{"id": "p126", "cat": "numbers", "text": "我们要在 2027 年 3 月前上线。"}
+{"id": "p127", "cat": "numbers", "text": "银行利率是 3.25%，贷款期限 20 年。"}
+{"id": "p128", "cat": "numbers", "text": "这段音频长 12 分 35 秒。"}
+{"id": "p129", "cat": "numbers", "text": "请拨打 400 800 1234 转 2。"}
+{"id": "p130", "cat": "numbers", "text": "产品重量是 1.5 千克，尺寸是 30 乘 20 厘米。"}
+{"id": "p131", "cat": "numbers", "text": "今天新增用户 8,642 人。"}
+{"id": "p132", "cat": "numbers", "text": "优惠券满 300 减 50。"}
+{"id": "p133", "cat": "numbers", "text": "会议从 9 点开到 11 点半。"}
+{"id": "p134", "cat": "numbers", "text": "这批订单编号是 20261026001。"}
+{"id": "p135", "cat": "numbers", "text": "服务器内存占用 78%，CPU 占用 45%。"}
+{"id": "p136", "cat": "numbers", "text": "距离终点还有 850 米。"}
+{"id": "p137", "cat": "numbers", "text": "这次测试覆盖了 96 个用例。"}
+{"id": "p138", "cat": "numbers", "text": "价格是每台 1,299 元，含税。"}
+{"id": "p139", "cat": "numbers", "text": "请把时间改成 14:30。"}
+{"id": "p140", "cat": "numbers", "text": "这个月还款日是 26 号。"}
+{"id": "p141", "cat": "names", "text": "张经理和李老师明天去深圳出差。"}
+{"id": "p142", "cat": "names", "text": "请帮我联系一下王小雨，她在杭州分公司。"}
+{"id": "p143", "cat": "names", "text": "陈总今天下午会来公司。"}
+{"id": "p144", "cat": "names", "text": "刘医生建议先做一次检查。"}
+{"id": "p145", "cat": "names", "text": "赵工正在处理服务器的问题。"}
+{"id": "p146", "cat": "names", "text": "周老师把课件发到群里了。"}
+{"id": "p147", "cat": "names", "text": "孙经理已经确认了报价。"}
+{"id": "p148", "cat": "names", "text": "吴同学今天请假。"}
+{"id": "p149", "cat": "names", "text": "郑女士的订单已经发货。"}
+{"id": "p150", "cat": "names", "text": "冯先生在前台等您。"}
+{"id": "p151", "cat": "names", "text": "上海、北京、广州和深圳都有我们的客户。"}
+{"id": "p152", "cat": "names", "text": "成都的天气比重庆凉快一些。"}
+{"id": "p153", "cat": "names", "text": "我们下个月去西安参加展会。"}
+{"id": "p154", "cat": "names", "text": "苏州工厂的产能已经恢复。"}
+{"id": "p155", "cat": "names", "text": "南京的会议改到周五。"}
+{"id": "p156", "cat": "names", "text": "武汉分公司的同事会一起参加。"}
+{"id": "p157", "cat": "names", "text": "厦门的海风很舒服。"}
+{"id": "p158", "cat": "names", "text": "青岛的啤酒很有名。"}
+{"id": "p159", "cat": "names", "text": "长沙的夜宵很好吃。"}
+{"id": "p160", "cat": "names", "text": "昆明的四季如春。"}
+{"id": "p161", "cat": "polyphone", "text": "银行行长说，行行都有行规。"}
+{"id": "p162", "cat": "polyphone", "text": "重庆的火锅很重口味。"}
+{"id": "p163", "cat": "polyphone", "text": "他还了书，还是还了钱？"}
+{"id": "p164", "cat": "polyphone", "text": "音乐让人快乐，乐器的乐要读四声。"}
+{"id": "p165", "cat": "polyphone", "text": "长江很长，长大的孩子都见过。"}
+{"id": "p166", "cat": "polyphone", "text": "这件事情要重新重视。"}
+{"id": "p167", "cat": "polyphone", "text": "你得把报告写得清楚一点。"}
+{"id": "p168", "cat": "polyphone", "text": "他把背包背在身上。"}
+{"id": "p169", "cat": "polyphone", "text": "我们要学会调整自己的节奏。"}
+{"id": "p170", "cat": "polyphone", "text": "这个行业的发展空间还很大。"}
+{"id": "p171", "cat": "polyphone", "text": "请把文件放在桌子上。"}
+{"id": "p172", "cat": "polyphone", "text": "银行旁边有一家药店。"}
+{"id": "p173", "cat": "polyphone", "text": "他骑自行车去学校。"}
+{"id": "p174", "cat": "polyphone", "text": "这位演员演得很好。"}
+{"id": "p175", "cat": "polyphone", "text": "我们要保证产品质量。"}
+{"id": "p176", "cat": "long", "text": "如果对方在会议里突然切换语言，系统需要在不打断说话的情况下自动识别语种，并把译文送到正确的耳机。"}
+{"id": "p177", "cat": "long", "text": "同声传译最关键的不是把每个词翻对，而是让两个人在几乎没有停顿的对话里，仍然能听清对方的意思。"}
+{"id": "p178", "cat": "long", "text": "我们先在小米、vivo、OPPO 和 iPhone 15 上测首音延迟，再决定是默认高质量音色还是低延迟音色。"}
+{"id": "p179", "cat": "long", "text": "这次改动涉及录音、识别、翻译、合成和播放五条链路，任何一条出问题都会影响最终体验。"}
+{"id": "p180", "cat": "long", "text": "如果网络不稳定，系统应该先保证本地识别和本地合成继续工作，等网络恢复后再同步文字记录。"}
+{"id": "p181", "cat": "long", "text": "客户希望在展示会上用两种语言介绍产品，同时保留完整的对话记录和重点摘要。"}
+{"id": "p182", "cat": "long", "text": "为了降低延迟，我们会先把译文按短句切开，再逐句合成，避免整段音频等待太久。"}
+{"id": "p183", "cat": "long", "text": "在嘈杂环境里，麦克风位置、降噪和回声消除会直接影响识别准确率，需要一起验证。"}
+{"id": "p184", "cat": "long", "text": "如果模型占用内存过高，应用可能被系统杀掉，所以我们必须控制模型体积和并发数量。"}
+{"id": "p185", "cat": "long", "text": "这套方案的目标不是替代专业同传，而是让普通人在旅行和商务场景里更轻松地沟通。"}
+{"id": "p186", "cat": "long", "text": "我们先把最常用的中英场景做稳定，再逐步增加日语、韩语和其他语言。"}
+{"id": "p187", "cat": "long", "text": "测试时要同时关注首音延迟、语音自然度、数字读法、多音字和长时间使用的稳定性。"}
+{"id": "p188", "cat": "long", "text": "任何涉及用户对话的数据都应该默认留在本地，只有用户明确同意后才上传。"}
+{"id": "p189", "cat": "long", "text": "这个版本先不做复杂的声音克隆，优先保证清晰、稳定和多音色可选。"}
+{"id": "p190", "cat": "long", "text": "如果用户戴着耳机，系统需要确认左右声道和麦克风路由是否正确。"}
+{"id": "p191", "cat": "mixed", "text": "请把 PDF 发到 my.email@example.com，抄送 Alice 和 张经理。"}
+{"id": "p192", "cat": "mixed", "text": "我们用 iPhone 15 Pro 测试 Wi-Fi 和 5G 下的延迟。"}
+{"id": "p193", "cat": "mixed", "text": "这个 API 的 timeout 设成 30 秒，记得加 retry。"}
+{"id": "p194", "cat": "mixed", "text": "请打开 APP，进入设置，再点击 Bluetooth。"}
+{"id": "p195", "cat": "mixed", "text": "这份 PPT 需要翻译成英文，明天发给 client。"}
+{"id": "p196", "cat": "mixed", "text": "我们用 AI 做会议纪要，但要先把 privacy 设置好。"}
+{"id": "p197", "cat": "mixed", "text": "请把 invoice 和 contract 一起发给我。"}
+{"id": "p198", "cat": "mixed", "text": "这个 bug 在 Android 和 iOS 上都能复现。"}
+{"id": "p199", "cat": "mixed", "text": "我需要一个 USB-C 转 3.5 毫米的 adapter。"}
+{"id": "p200", "cat": "mixed", "text": "请确认 Wi-Fi 密码和 VPN 地址。"}

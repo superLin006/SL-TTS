@@ -1,0 +1,14 @@
+# Python 3.10 on Linux/CUDA is the reference environment.
+torch==2.4.0
+pytorch-lightning==1.9.5
+numpy
+soundfile
+onnx==1.13.0
+# 1.13.1 for training/export; 1.28 recommended for static quantization
+onnxruntime==1.13.1
+pypinyin
+jieba
+piper-phonemize==1.2.0
+# Install from source:
+#   piper (piper_train), kokoro, misaki
+# Kokoro weights are not included; download hexgrad/Kokoro-82M-v1.1-zh separately.
