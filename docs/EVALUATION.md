@@ -41,7 +41,16 @@
 | 原版 xiao_ya streaming | 21MB | 549ms | 0.90 | 283MB | 119MB | 198MB | 基准 |
 | our float encoder + float decoder | 63MB | 634ms | 0.88 | 317MB | 159MB | 239MB | 8 |
 | our static-int8 encoder + float decoder | 23MB | 323ms | 0.83 | 294MB | 133MB | 212MB | 13 |
-| our dynamic-int8 encoder + float decoder | 22MB | 1590ms | 0.98 | 284MB | 124MB | 204MB | 7 |
+| our dynamic-int8 (QInt8) encoder + float decoder | 22MB | 1590ms | 0.98 | 284MB | 124MB | 204MB | 7 |
+| our dynamic-QUInt8 encoder + float decoder | 22MB | 631ms | 0.83 | 261MB | 123MB | 190MB | 6 |
+
+## 为什么 INT8 动态量化慢
+
+原版 xiao_ya 的 int8 archive 使用 **UINT8** ConvInteger 权重（dtype 2）；我们最初用 `QuantType.QInt8`（dtype 3）。ORT CPU 的 ConvInteger 对 UINT8 有优化，INT8 路径慢 3–6 倍。改 `QuantType.QUInt8` 后，K30 encoder 1.45s → 445ms，首音 1.59s → 631ms，质量仍为 6 个生僻词缺失。
+
+## QAT
+
+QAT 可以进一步把静态 encoder 从 0.32s 首音、13 个错词拉回质量，但动态 QUInt8 已经给出 22MB/0.63s/190MB PSS/6 个错词，QAT 的剩余收益主要是把首音从 0.63s 降到 ~0.32s；按需再做。
 
 ## 建议
 

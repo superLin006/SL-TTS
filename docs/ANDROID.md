@@ -33,7 +33,8 @@ python scripts/build_stream_cut_assets.py
 
 - **推荐首版**：encoder float + decoder float，约 63MB；K30 首音 373ms/565ms，无 underrun。
 - encoder static-int8 + decoder float：约 23MB，首音 246ms，但 100 词多错 5 个常用词，不采用。
-- encoder dynamic-int8 + decoder float：约 22MB，质量好；encoder 719ms，首音 845ms，不划算。
+- encoder dynamic-**QUInt8** + decoder float：约 22MB，质量 6 个生僻词缺失；首音 0.63s、RTF 0.83、PSS 190MB，推荐。
+- encoder dynamic-**QInt8** + decoder float：同样 22MB，但 ORT CPU ConvInteger 的 INT8 内核慢 3–6 倍（首音 1.59s），不要用 QInt8。
 - encoder FP16：K30 native ORT 不支持 `com.microsoft.Gelu` FP16，加载失败。
 - full static int8：长句后半段不稳；full dynamic int8：保真但太慢。
 

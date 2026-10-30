@@ -8,7 +8,7 @@
 - 教师：Kokoro v1.1-zh `zf_001`，使用 App lexicon 修正多音字后重新合成
 - 学生：Piper/VITS medium，pinyin token 标签（对齐 App g2pW/pinyin 前端），从零训练
 - 当前验收 checkpoint：`epoch=224`（300 epoch 训练中）
-- 首发端侧形态：**streaming encoder float + decoder float**，23MB 级静态版本保留为实验
+- 当前最佳端侧形态：**streaming dynamic-QUInt8 encoder + float decoder**（22MB）；float 版本保留为质量对照
 
 ## 客观结果
 
@@ -18,6 +18,7 @@
 |---|---:|---|
 | full pinyin224 float | 7 | 参差 + 6 个生僻词 |
 | streaming float encoder + float decoder | 8 | 基本相同，另 1 个 ASR 误判 |
+| streaming dynamic-QUInt8 encoder + float decoder | 6 | 仅生僻词，当前推荐 |
 | streaming static-int8 encoder + float decoder | 13 | encoder 静态量化多错 5 个常用词 |
 | streaming dynamic-int8 encoder + float decoder | 7 | 质量好但首音慢 |
 
@@ -25,7 +26,8 @@ K30 端侧 streaming 实测（4 threads）：
 
 | 版本 | 资源 | 首音 | 26 字/49 字总耗时 | 备注 |
 |---|---:|---:|---:|---|
-| float encoder + float decoder | ~63MB | 373ms / 565ms | 3.9s / 9.3s | 无 underrun，推荐首版基线 |
+| dynamic-QUInt8 encoder + float decoder | ~22MB | 631ms | 8.6s | PSS 190MB，推荐 |
+| float encoder + float decoder | ~63MB | 373ms / 565ms | 3.9s / 9.3s | 质量对照 |
 | static-int8 encoder + float decoder | ~23MB | 246ms / 314ms | 3.7s / 8.3s | 首音最快，但 100 词多错 5 个 |
 | dynamic-int8 encoder + float decoder | ~22MB | 845ms | 4.4s / 9.3s | 质量好，动态 ConvInteger 算力大 |
 | full float | 61MB | ~0.94s | 0.9s / 1.7s | 吞吐最好，非流式 |
