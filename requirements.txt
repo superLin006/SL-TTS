@@ -1,14 +1,42 @@
-# Python 3.10 on Linux/CUDA is the reference environment.
-torch==2.4.0
+# SL-TTS training/export environment
+# Python 3.10.16, CUDA 11.8. Install torch first with the cu118 index.
+--extra-index-url https://download.pytorch.org/whl/cu118
+
+torch==2.4.0+cu118
+torchaudio==2.4.0+cu118
+torchvision==0.19.0+cu118
 pytorch-lightning==1.9.5
-numpy
-soundfile
+torchmetrics==0.11.4
+
+numpy==1.26.4
+scipy==1.15.2
+librosa==0.11.0
+soundfile==0.13.1
+pydub==0.25.1
+
 onnx==1.13.0
-# 1.13.1 for training/export; 1.28 recommended for static quantization
-onnxruntime==1.13.1
-pypinyin
-jieba
+onnxconverter-common==1.14.0
+onnxmltools==1.11.1
+onnxruntime-gpu==1.13.1
+
 piper-phonemize==1.2.0
-# Install from source:
-#   piper (piper_train), kokoro, misaki
-# Kokoro weights are not included; download hexgrad/Kokoro-82M-v1.1-zh separately.
+phonemizer-fork==3.3.2
+espeakng-loader==0.2.4
+
+pypinyin==0.55.0
+pypinyin-dict==0.9.0
+jieba==0.42.1
+cn2an==0.5.24
+
+kokoro==0.9.4
+misaki[zh]==0.9.4
+transformers==4.57.0
+huggingface-hub==0.36.0
+modelscope==1.21.0
+
+PyYAML==6.0.2
+tqdm==4.70.1
+
+# Piper training source (1.0.0) is not a PyPI dependency used here:
+# clone rhasspy/piper, check out v1.0.0, apply patches/piper_num_workers.patch,
+# then run from src/python with PYTHONPATH, or install its piper-train package.

@@ -1,5 +1,9 @@
 # 训练流程
 
+## 0. 环境
+
+见 [ENVIRONMENT.md](ENVIRONMENT.md)；`requirements.txt` 为精简 TTS 依赖，`requirements-lock-server.txt` 为原服务器完整 freeze。
+
 ## 1. 语料
 
 ```bash

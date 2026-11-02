@@ -49,6 +49,14 @@ K30 端侧 streaming 实测（4 threads）：
 | full dynamic int8 | 19.3MB | ~4.4s | 4.4s / 8.0s | 保真但太慢 |
 | encoder FP16 | ~35MB | — | — | K30 native ORT 不支持 Gelu FP16，未采用 |
 
+## 环境
+
+```bash
+pip install -r requirements.txt
+```
+
+详见 [docs/ENVIRONMENT.md](docs/ENVIRONMENT.md)。
+
 ## 仓库内容
 
 - `scripts/`：语料生成、pinyin 前端、教师合成、预处理、训练、导出、量化、QAT、评测脚本
